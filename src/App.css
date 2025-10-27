@@ -44,6 +44,19 @@
     cursor: pointer;
 }
 
+.btn:hover {
+    background: #00438bdd;
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+}
+
+.btn:focus {
+    outline: 3px solid #edb3ff;
+    outline-offset: 2px;
+    background: #ffebf9;
+    color: black;
+}
+
 .theme {
     display: inline-flex;
     gap: 0.5rem;
@@ -98,7 +111,14 @@
     color: #ffffff;
   }
 
-  .search__controls input {
+input:hover,
+    select:hover {
+    background-color: #7a0061;
+    border-style: solid;
+    border-color: #a88be8;
+}
+
+.search__controls input {
     color: white;
   }
 
@@ -196,13 +216,13 @@
     gap: 0.25rem;
 }
 
-input,
-select {
+input, select {
     border-radius: 8px;
     border: 2px dotted #8063cf;
     padding: 0.5rem 0.75rem;
     background: #65004d;
 }
+
 
 .form__actions {
     display: flex;
