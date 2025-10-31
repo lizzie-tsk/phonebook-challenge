@@ -6,79 +6,81 @@ const FALLBACK_CONTACTS = [
         id: 1,
         name: "Princess Purr",
         phone: "(555) 372-2345",
-        email: "ada@example.com",
-        photo: "https://shorturl.at/5UIHx"
+        email: "purr@example.com",
+        photo: "/images/princess.jpg"
     },
     {
         id: 2,
         name: "Meowow",
         phone: "(555) 267-9886",
-        email: "alan@example.com",
-        photo: "https://shorturl.at/l5A4x",
+        email: "meowow@example.com",
+        photo: "/images/meowow.jpg"
     },
     {
         id: 3,
         name: "Lucy Gucy",
         phone: "(555) 195-3659",
-        email: "grace@example.com",
-        photo: "https://shorturl.at/gKR0z",
+        email: "lucy@example.com",
+        photo: "/images/lucy.jpg"
         
     },
     {
         id: 4,
         name: "Macklemore the Asshole",
         phone: "(555) 395-2763",
-        email: "grace@example.com",
-        photo: "https://tinyurl.com/ye887cr5",
+        email: "mac@example.com",
+        photo: "/images/mac.jpg"
     },
     {
         id: 5,
         name: "Prudence",
         phone: "(555) 488-2940",
-        email: "grace@example.com",
-        photo: "https://tinyurl.com/phmzn2fp",
+        email: "prudence@example.com",
+        photo: "/images/prudence.jpg"
     },
     {
         id: 6,
         name: "Powow",
         phone: "(555) 111-6482",
-        email: "grace@example.com",
-        photo: "https://tinyurl.com/4skp2v8c",
+        email: "powow@example.com",
+        photo: "/images/powow.jpg"
     },
     {
         id: 7,
         name: "Noro the Conquerer",
         phone: "(555) 289-6900",
-        email: "grace@example.com",
-        photo: "https://tinyurl.com/pw3amepj",
+        email: "noro@example.com",
+        photo: "/images/noro.avif"
     },
     {
         id: 8,
         name: "Rupert the Ginger",
         phone: "(555) 289-8892",
-        email: "grace@example.com",
-        photo: "https://tinyurl.com/48mwfbcj",
+        email: "rupert@example.com",
+        photo: "/images/rupert.webp"
     },
     {
         id: 9,
         name: "Bella Baddied",
         phone: "(555) 133-8850",
-        email: "grace@example.com",
-        photo: "https://shorturl.at/nAb3y",
+        email: "bella@example.com",
+        photo: "/images/bella.jpg"
     },
     {
         id: 10,
         name: "Donkey",
         phone: "(555) 432-9992",
-        email: "grace@example.com",
-        photo: "https://shorturl.at/2LOYv",
+        email: "donkey@example.com",
+        photo: "/images/donkey.jpg"
     },
 ];
 
 const App = () => {
     const [contacts, setContacts] = useState(FALLBACK_CONTACTS);
+    const [currentPage, setCurrentPage] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    <img src={contacts[currentPage].photo} alt={contacts[currentPage].name} className="contact-photo" />
 
     useEffect(() => {}, []);
 
@@ -95,9 +97,15 @@ const App = () => {
             <header className="page__header">
                 <h1 className="page__title">🐾 Kitty Contacts 🐾</h1>
                 <p className="page__subtitle">Throughout this project, we will be building a simple contact directory for my kitty cat June</p>
+                <div className="toolbar">
+                    <a className="btn" href="#intro">Home</a>
+                    <a className="btn" href="#contacts">Contacts</a>
+                    <a className="btn" href="#form">Add Contact</a>
+                </div>
+
             </header>
 
-            <section className="intro-cat">
+            <section id="intro" className="intro-cat">
                 <img src="/images/june.jpg" alt="June the Cat" className="intro-cat__photo" />
                 <div className="intro-cat__info">
                     <h3 className="intro-cat__name">June 🐾</h3>
@@ -134,113 +142,44 @@ const App = () => {
                 </p>
             </section>
 
-            <section className="contacts" aria-labelledby="contacts-heading">
+            <section id="contacts" className="contacts" aria-labelledby="contacts-heading">
                 <h2 id="contacts-heading">Contacts</h2>
+                {contacts.length > 0 && (
                 <ul className="contacts_list">
-                    <li className="contact-card">
-                        <img src="https://shorturl.at/5UIHx" alt="Princess Purr" className="contact-photo" />
-                        <div className="contact-card__info">
-                            <h3 className="contact-card__name">Princess Purr 🐾</h3>
-                            <p className="contact-card__phone">📱 (555) 372-2345</p>
-                            <p className="contact-card__email">✉️ princess@kitties.com</p>
-                            <p className="contact-card__blurb">Must be treated like royalty or she will pee on the bed</p>
-                        </div>
-                    </li>
-
-                    <li className="contact-card">
-                        <img src="https://shorturl.at/l5A4x" alt="Meowow" className="contact-photo" />
-                        <div className="contact-card__info">
-                            <h3 className="contact-card__name">Meowow 🐾</h3>
-                            <p className="contact-card__phone">📱 (555) 267-9886</p>
-                            <p className="contact-card__email">✉️ meowow@kitties.com</p>
-                            <p className="contact-card__blurb">He is a very vocal baby who loves attention and treats</p>
-                        </div>
-                    </li>
-
-                    <li className="contact-card">
-                        <img src="https://shorturl.at/gKR0z" alt="Lucy Gucy" className="contact-photo" />
-                        <div className="contact-card__info">
-                            <h3 className="contact-card__name">Lucy Gucy 🐾</h3>
-                            <p className="contact-card__phone">📱 (555) 195-3659</p>
-                            <p className="contact-card__email">✉️ lucy@kitties.com</p>
-                            <p className="contact-card__blurb">She prefers cheap boxes over her $100 cat tree</p>
-                        </div>
-                    </li>
-
-                    <li className="contact-card">
-                        <img src="https://tinyurl.com/ye887cr5" alt="Macklemore the Asshole" className="contact-photo" />
-                        <div className="contact-card__info">
-                            <h3 className="contact-card__name">Macklemore the Asshole 🐾</h3>
-                            <p className="contact-card__phone">📱 (555) 395-2763</p>
-                            <p className="contact-card__email">✉️ macklemore@kitties.com</p>
-                            <p className="contact-card__blurb">Sleeps on your pillow, and will try to bite your scalp if he gets pissed</p>
-                        </div>
-                    </li>
-
-                    <li className="contact-card">
-                        <img src="https://tinyurl.com/phmzn2fp" alt="Prudence" className="contact-photo" />
-                        <div className="contact-card__info">
-                            <h3 className="contact-card__name">Prudence 🐾</h3>
-                            <p className="contact-card__phone">📱 (555) 488-2940</p>
-                            <p className="contact-card__email">✉️ prudence@kitties.com</p>
-                            <p className="contact-card__blurb">She likes to watch Charmed and imagine that she is a witch</p>
-                        </div>
-                    </li>
-
-                    <li className="contact-card">
-                        <img src="https://tinyurl.com/4skp2v8c" alt="Powow" className="contact-photo" />
-                        <div className="contact-card__info">
-                            <h3 className="contact-card__name">Powow 🐾</h3>
-                            <p className="contact-card__phone">📱 (555) 111-6482</p>
-                            <p className="contact-card__email">✉️ powow@kitties.com</p>
-                            <p className="contact-card__blurb">Her favorite activity is kneading biscuits on your face</p>
-                        </div>
-                    </li>
-
-                    <li className="contact-card">
-                        <img src="https://tinyurl.com/pw3amepj" alt="Noro the Conquerer" className="contact-photo" />
-                        <div className="contact-card__info">
-                            <h3 className="contact-card__name">Noro the Conquerer 🐾</h3>
-                            <p className="contact-card__phone">📱 (555) 289-6900</p>
-                            <p className="contact-card__email">✉️ noro@kitties.com</p>
-                            <p className="contact-card__blurb">He has conquered every surface in the house</p>
-                        </div>
-                    </li>
-
-                    <li className="contact-card">
-                        <img src="https://tinyurl.com/48mwfbcj" alt="Rupert the Ginger" className="contact-photo" />
-                        <div className="contact-card__info">
-                            <h3 className="contact-card__name">Rupert the Ginger 🐾</h3>
-                            <p className="contact-card__phone">📱 (555) 289-8892</p>
-                            <p className="contact-card__email">✉️ rupert@kitties.com</p>
-                            <p className="contact-card__blurb">He uses his gingerness as an excuse to live a life of crime</p>
-                        </div>
-                    </li>
-
-                    <li className="contact-card">
-                        <img src="https://shorturl.at/nAb3y" alt="Bella Baddied" className="contact-photo" />
-                        <div className="contact-card__info">
-                            <h3 className="contact-card__name">Bella Baddied 🐾</h3>
-                            <p className="contact-card__phone">📱 (555) 133-8850</p>
-                            <p className="contact-card__email">✉️ bella@kitties.com</p>
-                            <p className="contact-card__blurb">Adorably weird kitty that likes standing on her back two legs</p>
-                        </div>
-                    </li>
-
-                    <li className="contact-card">
-                        <img src="https://shorturl.at/2LOYv" alt="Donkey" className="contact-photo" />
-                        <div className="contact-card__info">
-                            <h3 className="contact-card__name">Donkey 🐾</h3>
-                            <p className="contact-card__phone">📱 (555) 432-9992</p>
-                            <p className="contact-card__email">✉️ donkey@kitties.com</p>
-                            <p className="contact-card__blurb">The jury is still out on his species, might be a donkey cat hybrid</p>
-                        </div>
-                    </li>
+                <li className="contact-card">
+                    <img
+                        src={contacts[currentPage].photo}
+                        alt={contacts[currentPage].name}
+                        className="contact-photo"/>    
+                <div className="contact-card__info">
+                    <h3 className="contact-card__name">{contacts[currentPage].name} 🐾</h3>
+                        <p className="contact-card__phone">📱 {contacts[currentPage].phone}</p>
+                        <p className="contact-card__email">✉️ {contacts[currentPage].email}</p>
+                </div>
+                </li>  
                 </ul>
+                )}
+
+                <div className="pagination">
+                    <span>
+                        Page {currentPage + 1} of {contacts.length}
+                    </span>
+                    
+                    <div className="pagination-buttons">
+                        <button onClick={() => setCurrentPage(prev => Math.max(prev - 1, 0))} diabled={currentPage === 0}>
+                            Previous
+                        </button>
+                        
+                        <button onClick={() => setCurrentPage(prev => Math.min(prev +1, contacts.length - 1))}
+                        disabled={currentPage === contacts.length - 1}>
+                            Next
+                        </button>
+                    </div>
+                </div>
 
             </section>
 
-            <section className="form" aria-labelledby="form-heading">
+            <section id="form" className="form" aria-labelledby="form-heading">
                 <h2 id="form-heading">Add a Contact</h2>
                 <form className="form__body" onSubmit={handleSubmit} noValidate>
                     <div className="field">
@@ -298,5 +237,6 @@ const App = () => {
         </main>
     );
 };
+
 
 export default App;

@@ -8,3 +8,8 @@ createRoot(document.getElementById('root')).render(
         <App />
     </StrictMode>
 );
+
+<img 
+  src={contacts[currentPage].photo} 
+  alt={contacts[currentPage].name} 
+  className="contact-photo" />

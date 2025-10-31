@@ -17,7 +17,6 @@
 
 .page__title {
     margin: 0;
-    font-size: 2rem;
     font-size: 150%;
     color: #230053;
 }
@@ -32,7 +31,15 @@
     display: flex;
     gap: 0.75rem;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
+}
+
+.toolbar a.btn {
+    text-decoration: none;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn {
@@ -105,10 +112,16 @@
     font-style: italic;
     color: #2d0268ca;
   }
+
+  .intro-cat:hover {
+    transform: translateY(-10px) rotateX(3deg) rotateY(5deg);
+    border-radius: 18px;
+    box-shadow: 0 15px 25px #460036;
+}
   
 
   input::placeholder {
-    color: #ffffff;
+    color: #ffffff8e;
   }
 
 input:hover,
@@ -163,6 +176,12 @@ input:hover,
     background: #edcce986;
 }
 
+.contact-card:hover {
+    transform: translateY(-10px) rotateX(3deg) rotateY(5deg);
+    border-radius: 18px;
+    box-shadow: 0 15px 25px #460036;
+}
+
 .contact-card img {
     width: 150px;
     height: 150px;
@@ -183,10 +202,44 @@ input:hover,
     align-items: flex-end;
 }
 
-.contact-card__email,
-.contact-card__phone {
-    margin: 0.1rem 0;
-    color: #5c1c30;
+.pagination {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.pagination span {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.pagination-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.pagination button {
+    display: inline-block;
+    border-radius: 8px;
+    border: 1px solid #3a3a3a;
+    padding: 1rem 2rem;
+    background: #00438b86;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background: #00438bdd;
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+}
+
+.pagination button:focus {
+    outline: 3px solid #edb3ff;
+    outline-offset: 2px;
+    background: #ffebf9;
+    color: black;
 }
 
 .form {
