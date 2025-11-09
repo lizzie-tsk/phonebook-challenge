@@ -1,32 +1,72 @@
 [
     {
-        "id": 101,
-        "name": "Ada Lovelace",
-        "phone": "(555) 010-0101",
-        "email": "ada@example.com"
+        "id": 1,
+        "name": "Princess Purr",
+        "phone": "(555) 372-2345",
+        "email": "purr@example.com",
+        "photo": "/images/princess.jpg"
     },
     {
-        "id": 102,
-        "name": "Alan Turing",
-        "phone": "(555) 010-0102",
-        "email": "alan@example.com"
+        "id": 2,
+        "name": "Meowow",
+        "phone": "(555) 267-9886",
+        "email": "meowow@example.com",
+        "photo": "/images/meowow.jpg"
     },
     {
-        "id": 103,
-        "name": "Grace Hopper",
-        "phone": "(555) 010-0103",
-        "email": "grace@example.com"
+        "id": 3,
+        "name": "Lucy Gucy",
+        "phone": "(555) 195-3659",
+        "email": "lucy@example.com",
+        "photo": "/images/lucy.jpg"
     },
     {
-        "id": 104,
-        "name": "Katherine Johnson",
-        "phone": "(555) 010-0104",
-        "email": "katherine@example.com"
+        "id": 4,
+        "name": "Macklemore the Asshole",
+        "phone": "(555) 395-2763",
+        "email": "mac@example.com",
+        "photo": "/images/mac.jpg"
     },
     {
-        "id": 105,
-        "name": "Donald Knuth",
-        "phone": "(555) 010-0105",
-        "email": "donald@example.com"
+        "id": 5,
+        "name": "Prudence",
+        "phone": "(555) 488-2940",
+        "email": "prudence@example.com",
+        "photo": "/images/prudence.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Powow",
+        "phone": "(555) 111-6482",
+        "email": "powow@example.com",
+        "photo": "/images/powow.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Noro the Conquerer",
+        "phone": "(555) 289-6900",
+        "email": "noro@example.com",
+        "photo": "/images/noro.avif"
+    },
+    {
+        "id": 8,
+        "name": "Rupert the Ginger",
+        "phone": "(555) 289-8892",
+        "email": "rupert@example.com",
+        "photo": "/images/rupert.webp"
+    },
+    {
+        "id": 9,
+        "name": "Bella Baddied",
+        "phone": "(555) 133-8850",
+        "email": "bella@example.com",
+        "photo": "/images/bella.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Donkey",
+        "phone": "(555) 432-9992",
+        "email": "donkey@example.com",
+        "photo": "/images/donkey.jpg"
     }
 ]

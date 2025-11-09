@@ -76,20 +76,71 @@ const FALLBACK_CONTACTS = [
 ];
 
 const App = () => {
-    const [contacts, setContacts] = useState(FALLBACK_CONTACTS);
+    const [contacts, setContacts] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    <img src={contacts[currentPage].photo} alt={contacts[currentPage].name} className="contact-photo" />
+    const [errors, setErrors] = useState({});
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+        setLoading(true);
+        fetch("/data/contacts.json")
+            .then((res) => {
+                if (!res.ok) throw new Error ("Network response failed");
+                return res.json();
+            })
+            .then((data) => {
+                console.log("Fetched contacts:", data);
+                setContacts(data);
+                setError(null);
+            })
+            .catch(() => {
+                console.warn("Fetch failed, using fallback list");
+                setError("Failed to load contacts, and will be using the fallback contacts");
+                setContacts(FALLBACK_CONTACTS);
+            })
+            .finally(() => setLoading(false));
+    }, []);
 
     const [query, setQuery] = useState("");
+
+    const filteredContacts = useMemo(() => {
+        return contacts.filter(contact =>
+            contact.name.toLowerCase().includes(query.toLowerCase()) ||
+            contact.phone.includes(query)
+        );
+    }, [contacts, query]);
 
     const [form, setForm] = useState({ name: "", phone: "", email: "" });
     function handleSubmit(e) {
         e.preventDefault();
-        // Add contact submission logic here
+        const newErrors = {};
+        if (form.name.length <2) {
+            newErrors.name = "Name should have at least 2 characters";
+        }
+        if (!form.phone) {
+            newErrors.phone = "Phone number is required";
+        }
+
+        if (!form.email.includes("@")) {
+            newErrors.email = "Input a valid email";
+        } 
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+          }
+          
+        setErrors({});
+    
+        const newContact = {
+            id: contacts.length + 1,
+            ...form,
+            photo: "/images/placeholder_cat.jpg",
+        };
+
+        setContacts([newContact, ...contacts]);
+        setForm({ name: "", phone: "", email: ""});
     }
 
     return (
@@ -137,24 +188,24 @@ const App = () => {
                 <p className="search__results" data-testid="results-count">
                     Showing {contacts.length}{" "}
                     {contacts.length === 1 ? "result" : "results"}
-                    {loading ? " (loading...)" : ""}
-                    {error ? ` (error: ${error})` : ""}
+                    {loading && <span> Loading...</span>}
+                    {error && <span style={{ color: "red" }}> {error}</span>}
                 </p>
             </section>
 
             <section id="contacts" className="contacts" aria-labelledby="contacts-heading">
                 <h2 id="contacts-heading">Contacts</h2>
-                {contacts.length > 0 && (
+                {filteredContacts.length > 0 && (
                 <ul className="contacts_list">
                 <li className="contact-card">
                     <img
-                        src={contacts[currentPage].photo}
-                        alt={contacts[currentPage].name}
+                        src={filteredContacts[currentPage].photo}
+                        alt={filteredContacts[currentPage].name}
                         className="contact-photo"/>    
                 <div className="contact-card__info">
-                    <h3 className="contact-card__name">{contacts[currentPage].name} 🐾</h3>
-                        <p className="contact-card__phone">📱 {contacts[currentPage].phone}</p>
-                        <p className="contact-card__email">✉️ {contacts[currentPage].email}</p>
+                    <h3 className="contact-card__name">{filteredContacts[currentPage].name} 🐾</h3>
+                        <p className="contact-card__phone">📱 {filteredContacts[currentPage].phone}</p>
+                        <p className="contact-card__email">✉️ {filteredContacts[currentPage].email}</p>
                 </div>
                 </li>  
                 </ul>
@@ -162,16 +213,16 @@ const App = () => {
 
                 <div className="pagination">
                     <span>
-                        Page {currentPage + 1} of {contacts.length}
+                        Page {currentPage + 1} of {filteredContacts.length}
                     </span>
                     
                     <div className="pagination-buttons">
-                        <button onClick={() => setCurrentPage(prev => Math.max(prev - 1, 0))} diabled={currentPage === 0}>
+                        <button onClick={() => setCurrentPage(prev => Math.max(prev - 1, 0))} disabled={currentPage === 0}>
                             Previous
                         </button>
                         
-                        <button onClick={() => setCurrentPage(prev => Math.min(prev +1, contacts.length - 1))}
-                        disabled={currentPage === contacts.length - 1}>
+                        <button onClick={() => setCurrentPage(prev => Math.min(prev +1, filteredContacts.length - 1))}
+                        disabled={currentPage === filteredContacts.length - 1}>
                             Next
                         </button>
                     </div>
@@ -193,6 +244,7 @@ const App = () => {
                             required
                             minLength={2}
                         />
+                        {errors.name && <small style={{ color: "red" }}>{errors.name}</small>}
                     </div>
                     <div className="field">
                         <label htmlFor="phone">Enter kitty's number 📞</label>
@@ -207,6 +259,7 @@ const App = () => {
                             }
                             required
                         />
+                        {errors.phone && <small style={{ color: "red" }}>{errors.phone}</small>}
                     </div>
                     <div className="field">
                         <label htmlFor="email">Enter kitty's email ✉️</label>
@@ -220,6 +273,7 @@ const App = () => {
                                 setForm({ ...form, email: e.target.value })
                             }
                         />
+                        {errors.email && <small style={{ color: "red" }}>{errors.email}</small>}
                     </div>
                     <div className="form__actions">
                         <button className="btn" type="submit" data-testid="btn-add">
